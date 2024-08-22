@@ -1,7 +1,7 @@
 {
     "posts": [
-        { "filename": "about.md", "category": "technology", "title": "About us", "published": true },
-        { "filename": "another-post.md", "category": "lifestyle", "title": "Another Post", "published": false }
+        { "filename": "about.md", "category": "technology", "title": "About us", "published": true, "slug": "about-us" },
+        { "filename": "another-post.md", "category": "lifestyle", "title": "Another Post", "published": false, "slug": "another-post" }
     ],
     "categories": ["all", "technology", "lifestyle"]
 }

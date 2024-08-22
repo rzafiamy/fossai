@@ -13,24 +13,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /**
      * Fetches a Markdown file and renders its content as HTML in the content div.
-     * @param {string} filename - The name of the Markdown file to fetch.
+     * @param {string} slug - The slug of the Markdown file to fetch.
      */
-    const fetchAndRenderPost = (filename) => {
-        const post = allPosts.find(post => post.filename === filename);
+    const fetchAndRenderPost = (slug) => {
+        const post = allPosts.find(post => post.slug === slug);
         if (post && post.published) {
-            fetch(`posts/${filename}`)
+            fetch(`posts/${post.filename}`)
                 .then(response => response.text())
                 .then(markdown => {
                     const html = marked.parse(markdown);
                     contentDiv.innerHTML = html;
-                    displayRelatedPosts(filename); // Display related posts after rendering the current post
+                    displayRelatedPosts(post.slug); // Display related posts after rendering the current post
                 })
                 .catch(error => console.error('Error fetching the markdown file:', error));
         } else {
             contentDiv.innerHTML = '<p>This post is not published or does not exist.</p>';
         }
     };
-    
 
     /**
      * Loads and displays posts by category.
@@ -40,14 +39,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const filteredPosts = category === 'all'
             ? allPosts.filter(post => post.published)
             : allPosts.filter(post => post.category === category && post.published);
-    
+
         if (filteredPosts.length > 0) {
             renderPostList(filteredPosts);
         } else {
             contentDiv.innerHTML = '<p>No posts available in this category.</p>';
         }
     };
-    
 
     /**
      * Renders a list of posts in the content div.
@@ -59,17 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
         posts.forEach(post => {
             const listItem = document.createElement('li');
             listItem.classList.add('list-group-item');
-            listItem.innerHTML = `<a href="#" data-filename="${post.filename}">${post.title}</a>`;
+            listItem.innerHTML = `<a href="#${post.slug}">${post.title}</a>`;
             listGroup.appendChild(listItem);
-        });
-
-        // Add event listeners to post links
-        listGroup.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', (event) => {
-                event.preventDefault();
-                const filename = link.getAttribute('data-filename');
-                fetchAndRenderPost(filename);
-            });
         });
     };
 
@@ -85,12 +74,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /**
      * Displays related posts based on the current post's category.
-     * @param {string} filename - The filename of the current post.
+     * @param {string} slug - The slug of the current post.
      */
-    const displayRelatedPosts = (filename) => {
-        const post = allPosts.find(post => post.filename === filename);
+    const displayRelatedPosts = (slug) => {
+        const post = allPosts.find(post => post.slug === slug);
         if (post) {
-            const relatedPosts = allPosts.filter(p => p.category === post.category && p.filename !== filename);
+            const relatedPosts = allPosts.filter(p => p.category === post.category && p.slug !== slug);
             if (relatedPosts.length > 0) {
                 const relatedPostsDiv = document.createElement('div');
                 relatedPostsDiv.innerHTML = '<h3>Related Posts</h3><ul class="list-group"></ul>';
@@ -98,19 +87,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 relatedPosts.forEach(post => {
                     const listItem = document.createElement('li');
                     listItem.classList.add('list-group-item');
-                    listItem.innerHTML = `<a href="#" data-filename="${post.filename}">${post.title}</a>`;
+                    listItem.innerHTML = `<a href="#${post.slug}">${post.title}</a>`;
                     listGroup.appendChild(listItem);
                 });
                 contentDiv.appendChild(relatedPostsDiv);
-
-                // Add event listeners to related post links
-                listGroup.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', (event) => {
-                        event.preventDefault();
-                        const filename = link.getAttribute('data-filename');
-                        fetchAndRenderPost(filename);
-                    });
-                });
             }
         }
     };
@@ -125,7 +105,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 allPosts = data.posts;
                 categories = data.categories;
                 updateNavigationMenu(); // Update navigation menu based on categories
-                loadPostsByCategory('all'); // Load default category posts
+
+                loadInitialHash();
             })
             .catch(error => console.error('Error fetching the sitemap file:', error));
     };
@@ -138,17 +119,8 @@ document.addEventListener("DOMContentLoaded", () => {
         categories.forEach(category => {
             const listItem = document.createElement('li');
             listItem.classList.add('nav-item');
-            listItem.innerHTML = `<a class="nav-link" href="#" data-category="${category}">${capitalizeFirstLetter(category)}</a>`;
+            listItem.innerHTML = `<a class="nav-link" href="#${category}">${capitalizeFirstLetter(category)}</a>`;
             menuContainer.appendChild(listItem);
-        });
-
-        // Add event listeners to navigation links
-        menuContainer.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', (event) => {
-                event.preventDefault();
-                const category = link.getAttribute('data-category');
-                loadPostsByCategory(category);
-            });
         });
     };
 
@@ -160,6 +132,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const capitalizeFirstLetter = (str) => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
+    
+    /**
+     * Load initial hash
+     * @returns {string} - The hash of the URL.
+     */
+    const loadInitialHash = () => {
+        let initialSlug =  window.location.hash.substring(1); // Remove the '#' character
+        if(initialSlug){
+            if(categories.includes(initialSlug)){
+                loadPostsByCategory(initialSlug);
+            }else{
+                fetchAndRenderPost(initialSlug);
+            }
+        }
+    }
 
     // Add event listener to the search input
     searchInput.addEventListener('input', () => {
@@ -168,4 +155,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initialize posts and navigation menu by fetching the sitemap JSON
     initializePosts();
+
+    // Handle changes in the URL hash
+    window.addEventListener('hashchange', () => {
+        console.log("Hash Listener");
+        const slug = window.location.hash.substring(1); // Remove the '#' character
+        if(categories.includes(slug)){
+            loadPostsByCategory(slug);
+        }else{
+            fetchAndRenderPost(slug);
+        }
+    });
+    
 });
