@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    color: #333;
+}
+
+a {
+    color: #007BFF;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+code {
+    background: #f4f4f4;
+    padding: 2px 4px;
+    border-radius: 4px;
+}

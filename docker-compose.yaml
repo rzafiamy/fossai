@@ -1,0 +1,26 @@
+version: '3'
+services:
+  fossai:
+    container_name: fossai
+    build:
+      context: .
+      dockerfile: Dockerfile
+    user: "1000"
+    ports:
+      - "4000:5173"
+    volumes:
+      - ./app:/app
+    command: npm run dev --prefix /app/fossai -- --host 0.0.0.0 --port 5173
+
+  phpserver:
+    container_name: fossai-php
+    image: php:8.2-apache
+    ports:
+      - "8080:80"
+    volumes:
+      - ./app/dist/www:/var/www/html
+    environment:
+      APACHE_RUN_USER: www-data
+      APACHE_RUN_GROUP: www-data
+    depends_on:
+      - fossai
