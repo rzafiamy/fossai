@@ -1,0 +1,94 @@
+/* General container styling */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Search input styling */
+input[type="text"] {
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    font-size: 1rem;
+    padding: .75rem;
+}
+
+input[type="text"]:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 .2rem rgba(38, 143, 255, .25);
+}
+
+/* Content area styling */
+#content {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    border-radius: .5rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+}
+
+/* Header styling */
+#content h1, #content h2, #content h3 {
+    color: #343a40;
+    margin-bottom: .5rem;
+}
+
+#content h1 {
+    font-size: 2rem;
+    margin-top: 0;
+}
+
+#content h2 {
+    font-size: 1.5rem;
+}
+
+#content h3 {
+    font-size: 1.25rem;
+}
+
+/* Paragraph styling */
+#content p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: #495057;
+}
+
+/* List styling */
+#content ol, #content ul {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+#content li {
+    margin-bottom: .5rem;
+}
+
+/* Link styling */
+#content a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+#content a:hover {
+    text-decoration: underline;
+}
+
+/* Emphasized text */
+#content em {
+    font-style: italic;
+    color: #6c757d;
+}
+
+/* Horizontal rule styling */
+#content hr {
+    border: 0;
+    border-top: 1px solid #e9ecef;
+    margin: 1.5rem 0;
+}
+
+/* Utility classes */
+.mb-4 {
+    margin-bottom: 1.5rem;
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+}

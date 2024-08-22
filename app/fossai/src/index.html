@@ -1,34 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Blog</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <!-- Add Bootstrap 5 CSS link -->
-    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
-    <!-- Add Framework7 Icons CSS link -->
-    <link rel="stylesheet" href="/vendor/framework7-icons/css/framework7-icons.css">
-    <link rel="stylesheet" href="/assets/css/styles.css">
-    <script src="/vendor/jquery/js/jquery-3.7.1.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/vendor/chartjs/js/chart.js"></script>
-    <script src="/vendor/marked/js/marked.min.js"></script>
-</head>
-<body>
-    <nav id="menu">
-        <ul>
-            <li><a href="#" data-category="all">All Posts</a></li>
-            <li><a href="#" data-category="technology">Technology</a></li>
-            <li><a href="#" data-category="lifestyle">Lifestyle</a></li>
-        </ul>
-    </nav>
-    <div id="content"></div>
 
-    <script type="module" src="/assets/js/app.js"></script>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Fossai</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet">
+        <!-- Add Bootstrap 5 CSS link -->
+        <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+        <!-- Add Framework7 Icons CSS link -->
+        <link rel="stylesheet" href="/vendor/framework7-icons/css/framework7-icons.css">
+        <link rel="stylesheet" href="/assets/css/styles.css">
+        <link rel="stylesheet" href="/assets/css/post.css">
+    </head>
+
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+            <a class="navbar-brand" href="#">Fossai</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav"></ul>
+            </div>
+        </nav>
+
+        <!-- Content -->
+        <div class="container mt-4">
+            <div id="content" class="bg-light p-4 rounded shadow-sm"></div>
+        </div>
+
+        <script src="/vendor/jquery/js/jquery-3.7.1.min.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/vendor/chartjs/js/chart.js"></script>
+        <script src="/vendor/marked/js/marked.min.js"></script>
+        <script type="module" src="/assets/js/app.js"></script>
+
+        <script>
+            $('.navbar-toggler').on('click', function() {
+                $('.navbar-collapse').toggleClass('show');
+            });
+        </script>
+    </body>
+
 </html>
