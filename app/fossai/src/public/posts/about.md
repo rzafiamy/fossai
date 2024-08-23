@@ -1,12 +1,8 @@
 # FOSSAI: An Open-Source Blog Powered by AI
 
-## Author
-Jane Doe
+Jane Doe / August 22, 2024 / Category
 
-## Publication Date
-August 22, 2024
-
-## Concept of FOSSAI
+### Concept of FOSSAI
 
 FOSSAI is an innovative open-source blog designed to leverage the power of artificial intelligence to generate content automatically. This blog aims to provide a seamless and efficient way to produce high-quality posts on a variety of topics by harnessing the capabilities of AI technology.
 

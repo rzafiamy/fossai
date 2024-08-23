@@ -1,3 +1,27 @@
+/* create root element */
+:root {
+    --primary: #198754;
+    --secondary: #0d6efd;
+    --success: #198754;
+    --info: #0d6efd;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --light: #f8f9fa;
+    --dark: #343a40;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+.btn-primary:disabled {
+    color: #fff;
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+}
+
 /* General container styling */
 .container {
     max-width: 800px;
@@ -32,16 +56,17 @@ input[type="text"]:focus {
 }
 
 #content h1 {
-    font-size: 2rem;
+    font-size: 17pt;
     margin-top: 0;
+    color: var(--primary);
 }
 
 #content h2 {
-    font-size: 1.5rem;
+    font-size: 15pt;
 }
 
 #content h3 {
-    font-size: 1.25rem;
+    font-size: 14pt;
 }
 
 /* Paragraph styling */
@@ -49,6 +74,8 @@ input[type="text"]:focus {
     line-height: 1.6;
     margin-bottom: 1rem;
     color: #495057;
+    text-align: justify;
+    font-size: 10pt;
 }
 
 /* List styling */
@@ -59,11 +86,12 @@ input[type="text"]:focus {
 
 #content li {
     margin-bottom: .5rem;
+    font-size: 10pt;
 }
 
 /* Link styling */
 #content a {
-    color: #007bff;
+    color: #198754;
     text-decoration: none;
 }
 
@@ -91,4 +119,13 @@ input[type="text"]:focus {
 
 .mt-4 {
     margin-top: 1.5rem;
+}
+
+.post-item-title {
+    font-size: 15pt;
+    color: var(--primary);
+}
+
+div.related-posts h3{
+   color: var(--primary) !important;
 }

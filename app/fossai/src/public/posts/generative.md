@@ -1,10 +1,6 @@
 # Exploring Generative AI: Transforming Creativity and Automation
 
-## Author
-Jane Doe
-
-## Publication Date
-August 22, 2024
+Jane Doe / August 22, 2024 / Category
 
 ## Introduction to Generative AI
 
