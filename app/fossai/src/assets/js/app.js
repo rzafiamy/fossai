@@ -1,4 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const currentHash = window.location.hash;
+    // Check if the current hash is empty, just '/', '#', or '/#'
+    if (!currentHash || currentHash === '#' || currentHash === '/#' || currentHash === '/') {
+        window.location.hash = '#all';
+    }
+    
     const contentDiv = document.getElementById('content');
     const menuContainer = document.querySelector('.navbar-nav');
     const searchInput = document.createElement('input');
