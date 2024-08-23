@@ -34,7 +34,3 @@ FOSSAI stands for "Free and Open Source Software with Artificial Intelligence." 
 FOSSAI represents a significant step forward in the integration of AI and open-source technologies. By combining these two powerful concepts, it aims to make content creation more accessible and efficient for everyone.
 
 Feel free to explore the project, contribute to its development, or use it as a foundation for your own AI-powered blogging platform.
-
----
-
-*For more information, visit the [FOSSAI project page](https://example.com/foss-ai) or contact the development team at [support@example.com](mailto:support@example.com).*
